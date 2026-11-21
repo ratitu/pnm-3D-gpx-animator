@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx version="1.1" creator="Relive Alpine Demo" xmlns="http://www.topografix.com/GPX/1/1">
+  <metadata>
+    <name>Passo dello Stelvio - Alpine Epic Climb</name>
+    <desc>Legendary Alpine pass hairpins and scenic elevation climb</desc>
+    <time>2026-06-15T08:00:00Z</time>
+  </metadata>
+  <trk>
+    <name>Passo dello Stelvio Epic Pass</name>
+    <trkseg>
+      <!-- Base in Prato allo Stelvio -->
+      <trkpt lat="46.6174" lon="10.5905"><ele>915</ele><time>2026-06-15T08:00:00Z</time></trkpt>
+      <trkpt lat="46.6142" lon="10.5792"><ele>940</ele><time>2026-06-15T08:04:12Z</time></trkpt>
+      <trkpt lat="46.6111" lon="10.5684"><ele>985</ele><time>2026-06-15T08:09:40Z</time></trkpt>
+      <trkpt lat="46.6065" lon="10.5592"><ele>1040</ele><time>2026-06-15T08:15:30Z</time></trkpt>
+      <trkpt lat="46.6012" lon="10.5480"><ele>1115</ele><time>2026-06-15T08:22:15Z</time></trkpt>
+      
+      <!-- Valley approach Gomagoi -->
+      <trkpt lat="46.5910" lon="10.5422"><ele>1210</ele><time>2026-06-15T08:31:00Z</time></trkpt>
+      <trkpt lat="46.5822" lon="10.5371"><ele>1315</ele><time>2026-06-15T08:41:30Z</time></trkpt>
+      <trkpt lat="46.5744" lon="10.5284"><ele>1430</ele><time>2026-06-15T08:52:45Z</time></trkpt>
+      
+      <!-- Trafoi entrance -->
+      <trkpt lat="46.5592" lon="10.5142"><ele>1540</ele><time>2026-06-15T09:05:00Z</time></trkpt>
+      <trkpt lat="46.5521" lon="10.5058"><ele>1650</ele><time>2026-06-15T09:18:20Z</time></trkpt>
+      <trkpt lat="46.5445" lon="10.4962"><ele>1775</ele><time>2026-06-15T09:32:00Z</time></trkpt>
+      
+      <!-- Iconic Switchbacks Section (Hairpins 48 down to 20) -->
+      <trkpt lat="46.5390" lon="10.4905"><ele>1880</ele><time>2026-06-15T09:45:10Z</time></trkpt>
+      <trkpt lat="46.5365" lon="10.4820"><ele>1965</ele><time>2026-06-15T09:56:40Z</time></trkpt>
+      <trkpt lat="46.5332" lon="10.4855"><ele>2030</ele><time>2026-06-15T10:06:00Z</time></trkpt>
+      <trkpt lat="46.5310" lon="10.4788"><ele>2110</ele><time>2026-06-15T10:16:30Z</time></trkpt>
+      <trkpt lat="46.5292" lon="10.4842"><ele>2185</ele><time>2026-06-15T10:27:00Z</time></trkpt>
+      
+      <!-- Upper high-alpine serpentine turns -->
+      <trkpt lat="46.5270" lon="10.4755"><ele>2270</ele><time>2026-06-15T10:39:20Z</time></trkpt>
+      <trkpt lat="46.5255" lon="10.4812"><ele>2345</ele><time>2026-06-15T10:50:00Z</time></trkpt>
+      <trkpt lat="46.5240" lon="10.4715"><ele>2430</ele><time>2026-06-15T11:02:15Z</time></trkpt>
+      <trkpt lat="46.5230" lon="10.4770"><ele>2515</ele><time>2026-06-15T11:15:00Z</time></trkpt>
+      <trkpt lat="46.5218" lon="10.4682"><ele>2600</ele><time>2026-06-15T11:28:40Z</time></trkpt>
+      <trkpt lat="46.5222" lon="10.4725"><ele>2680</ele><time>2026-06-15T11:41:00Z</time></trkpt>
+      
+      <!-- Passo dello Stelvio Summit (2757m) -->
+      <trkpt lat="46.5286" lon="10.4532"><ele>2757</ele><time>2026-06-15T11:55:00Z</time></trkpt>
+      
+      <!-- High-speed technical descent towards Bormio -->
+      <trkpt lat="46.5245" lon="10.4420"><ele>2610</ele><time>2026-06-15T12:01:20Z</time></trkpt>
+      <trkpt lat="46.5188" lon="10.4350"><ele>2440</ele><time>2026-06-15T12:06:10Z</time></trkpt>
+      <trkpt lat="46.5095" lon="10.4285"><ele>2230</ele><time>2026-06-15T12:11:00Z</time></trkpt>
+      <trkpt lat="46.4980" lon="10.4190"><ele>1980</ele><time>2026-06-15T12:16:30Z</time></trkpt>
+      <trkpt lat="46.4855" lon="10.4050"><ele>1720</ele><time>2026-06-15T12:22:00Z</time></trkpt>
+      <trkpt lat="46.4710" lon="10.3880"><ele>1460</ele><time>2026-06-15T12:27:15Z</time></trkpt>
+      <trkpt lat="46.4678" lon="10.3755"><ele>1225</ele><time>2026-06-15T12:33:00Z</time></trkpt>
+    </trkseg>
+  </trk>
+</gpx>

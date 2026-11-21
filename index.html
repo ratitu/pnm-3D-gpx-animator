@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Relive 3D &bull; Geospatial Journey Experience</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  </head>
+  <body class="viewport">
+    <!-- Map Container (Globe & 3D Terrain) -->
+    <div id="map"></div>
+
+    <!-- Transparent HUD Floating System -->
+    <div id="hud-overlay">
+      <div id="hud-top"></div>
+      
+      <div class="hud-bottom-section">
+        <div class="elevation-profile-container glass-panel" id="elevation-container"></div>
+        <div id="playback-controls-container"></div>
+      </div>
+    </div>
+
+    <!-- Drag and Drop Overlay -->
+    <div class="dropzone-overlay" id="dropzone">
+      <svg viewBox="0 0 24 24" width="60" height="60" stroke="#d0542c" stroke-width="2" fill="none">
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+        <polyline points="17 8 12 3 7 8"/>
+        <line x1="12" y1="3" x2="12" y2="15"/>
+      </svg>
+      <div class="dropzone-text">Drop your .GPX file anywhere to explore in 3D</div>
+    </div>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
