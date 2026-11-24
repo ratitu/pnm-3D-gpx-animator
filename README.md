@@ -43,7 +43,7 @@ npm run preview   # serves dist/ at http://127.0.0.1:4173
 
 - Choose **Stelvio Pass** or **Zepp Track** to load a bundled demo, or use **Import GPX** / drop a `.gpx` file anywhere on the page.
 - Use the basemap dropdown in the top bar to switch between **Satellite**, **Landscape**, and **Backdrop**. Terrain, hillshade, and the route overlay stay in place.
-- Press **Space** to play or pause. Speed options are 1x, 2x, 5x (default), 10x, and 20x.
+- Press **Space** to play or pause. Speed options are 1x, 2x (default), 5x, 10x, and 20x.
 - Click or drag on the elevation chart to jump to any point in the ride.
 - Switch camera modes with the **MODE** buttons; **Free** leaves the camera under manual control.
 - Click **Export Video**, pick a preset, then start. Export renders about 22 seconds at 30 fps from the beginning of the route and downloads a WebM file (MP4 where the browser provides it). Playback position, camera mode, and terrain are restored afterward.

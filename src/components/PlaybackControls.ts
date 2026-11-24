@@ -50,8 +50,8 @@ export class PlaybackControls {
         <div class="control-group view-tabs">
           <span class="group-label">SPEED</span>
           <button class="pill-btn speed-btn" data-speed="1">1x</button>
-          <button class="pill-btn speed-btn" data-speed="2">2x</button>
-          <button class="pill-btn speed-btn active" data-speed="5">5x</button>
+          <button class="pill-btn speed-btn active" data-speed="2">2x</button>
+          <button class="pill-btn speed-btn" data-speed="5">5x</button>
           <button class="pill-btn speed-btn" data-speed="10">10x</button>
           <button class="pill-btn speed-btn" data-speed="20">20x</button>
         </div>

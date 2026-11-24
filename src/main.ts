@@ -4,7 +4,12 @@ import './style.css';
 
 // Ensure MapLibre Web Worker is loaded correctly in Vite bundler
 setWorkerUrl(workerUrl);
-import { parseGPX, getInterpolatedPoint, formatDuration } from './services/gpxEngine';
+import {
+  parseGPX,
+  getInterpolatedPoint,
+  getLookAheadBearing,
+  formatDuration
+} from './services/gpxEngine';
 import {
   applyBasemap,
   createMapStyle,
@@ -39,7 +44,7 @@ class ReliveApp {
   private currentBasemap: BasemapId = DEFAULT_BASEMAP;
   private progress = 0; // 0..1
   private isPlaying = false;
-  private playbackSpeed = 5; // default 5x
+  private playbackSpeed = 2; // slower default keeps tight switchbacks watchable
   private lastTimestamp = 0;
 
   // Track GeoJSON Sources
@@ -363,6 +368,11 @@ class ReliveApp {
     }
   }
 
+  private getCameraBearing(progress: number): number {
+    if (!this.currentTrack) return 0;
+    return getLookAheadBearing(this.currentTrack.points, progress);
+  }
+
   private seekTo(progress: number) {
     if (!this.currentTrack) return;
     this.progress = Math.max(0, Math.min(1, progress));
@@ -370,7 +380,7 @@ class ReliveApp {
     const curPoint = getInterpolatedPoint(this.currentTrack.points, this.progress);
     this.cyclistMarker.update(curPoint);
     this.cameraDirector.resetTo(curPoint);
-    this.cameraDirector.update(curPoint, 0.05);
+    this.cameraDirector.update(curPoint, 0.05, this.getCameraBearing(this.progress));
     this.updateTraveledRoute(this.progress);
     this.elevationChart.updateProgress(this.progress);
 
@@ -402,7 +412,7 @@ class ReliveApp {
     if (!this.isPlaying || !this.currentTrack) return;
 
     if (!this.lastTimestamp) this.lastTimestamp = timestamp;
-    const dtSeconds = Math.min(0.1, (timestamp - this.lastTimestamp) / 1000);
+    const dtSeconds = Math.max(0, Math.min(0.1, (timestamp - this.lastTimestamp) / 1000));
     this.lastTimestamp = timestamp;
 
     // Base journey target duration ~45s at 1x speed
@@ -430,7 +440,7 @@ class ReliveApp {
 
     // Update marker, camera, route line, HUD
     this.cyclistMarker.update(curPoint);
-    this.cameraDirector.update(curPoint, dtSeconds);
+    this.cameraDirector.update(curPoint, dtSeconds, this.getCameraBearing(this.progress));
     this.updateTraveledRoute(this.progress);
     this.elevationChart.updateProgress(this.progress);
 
@@ -552,7 +562,7 @@ class ReliveApp {
     const point = getInterpolatedPoint(track.points, progress);
     this.cyclistMarker.update(point);
     if (progress <= 0.001) this.cameraDirector.resetTo(point);
-    this.cameraDirector.update(point, Math.max(dt, 1 / 30));
+    this.cameraDirector.update(point, Math.max(dt, 1 / 30), this.getCameraBearing(progress));
 
     if (progress > 0.9) {
       const finalPoint = track.points[track.points.length - 1];

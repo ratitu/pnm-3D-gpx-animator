@@ -388,3 +388,52 @@ export function getInterpolatedPoint(points: TrackPoint[], t: number): TrackPoin
     bearing
   };
 }
+
+/**
+ * Averaged bearing over the next stretch of trail, used to anticipate turns
+ * instead of snapping the camera when adjacent samples disagree on heading.
+ */
+export function getLookAheadBearing(
+  points: TrackPoint[],
+  t: number,
+  aheadMeters = 120
+): number {
+  if (points.length < 2) return 0;
+
+  const targetDistance = getInterpolatedPoint(points, t).distFromStart + aheadMeters;
+
+  const bearingAtDistance = (distance: number): number => {
+    let lo = 0;
+    let hi = points.length - 1;
+    while (lo < hi) {
+      const mid = Math.floor((lo + hi) / 2);
+      if (points[mid].distFromStart < distance) lo = mid + 1;
+      else hi = mid;
+    }
+
+    const upperIndex = Math.max(1, lo);
+    const lowerIndex = upperIndex - 1;
+    const lower = points[lowerIndex];
+    const upper = points[upperIndex];
+    const span = upper.distFromStart - lower.distFromStart;
+    const alpha = span > 0 ? Math.max(0, Math.min(1, (distance - lower.distFromStart) / span)) : 0;
+    const lowerBearing = lower.bearing || 0;
+    const upperBearing = upper.bearing || 0;
+    const diff = ((upperBearing - lowerBearing + 540) % 360) - 180;
+    return ((lowerBearing + diff * alpha) % 360 + 360) % 360;
+  };
+
+  let sinSum = 0;
+  let cosSum = 0;
+  let lastBearing = 0;
+  for (let i = 1; i <= 4; i++) {
+    lastBearing = bearingAtDistance(targetDistance - aheadMeters + (aheadMeters * i) / 4);
+    const radians = (lastBearing * Math.PI) / 180;
+    sinSum += Math.sin(radians);
+    cosSum += Math.cos(radians);
+  }
+
+  // Opposing bearings can cancel out in a hairpin; use the farthest sample then.
+  if (Math.hypot(sinSum, cosSum) < 0.15) return lastBearing;
+  return ((Math.atan2(sinSum, cosSum) * 180) / Math.PI + 360) % 360;
+}
