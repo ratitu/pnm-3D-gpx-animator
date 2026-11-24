@@ -235,7 +235,27 @@ html, body, #app {
 .hud-top-actions {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
+  justify-content: flex-end;
   gap: 10px;
+}
+
+.basemap-picker select {
+  appearance: none;
+  -webkit-appearance: none;
+  background: transparent;
+  border: 0;
+  outline: none;
+  color: inherit;
+  font: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  cursor: pointer;
+}
+
+.basemap-picker select option {
+  background: var(--bg-soft);
+  color: var(--text);
 }
 
 .hud-btn {

@@ -5,7 +5,12 @@ import './style.css';
 // Ensure MapLibre Web Worker is loaded correctly in Vite bundler
 setWorkerUrl(workerUrl);
 import { parseGPX, getInterpolatedPoint, formatDuration } from './services/gpxEngine';
-import { createMapStyle } from './services/mapStyle';
+import {
+  applyBasemap,
+  createMapStyle,
+  DEFAULT_BASEMAP,
+  type BasemapId
+} from './services/mapStyle';
 import { CameraDirector } from './services/cameraDirector';
 import { CyclistMarker } from './components/CyclistMarker';
 import { AthleticHUD } from './components/AthleticHUD';
@@ -31,6 +36,7 @@ class ReliveApp {
   private isExporting = false;
 
   private currentTrack: ParsedTrack | null = null;
+  private currentBasemap: BasemapId = DEFAULT_BASEMAP;
   private progress = 0; // 0..1
   private isPlaying = false;
   private playbackSpeed = 5; // default 5x
@@ -88,6 +94,12 @@ class ReliveApp {
       this.loadDemoRoute(`${import.meta.env.BASE_URL}demo/zepp_ride.gpx`);
     });
 
+    const basemapSelect = document.querySelector('#basemap-select') as HTMLSelectElement | null;
+    basemapSelect?.addEventListener('change', (e) => {
+      this.currentBasemap = (e.target as HTMLSelectElement).value as BasemapId;
+      applyBasemap(this.map, this.currentBasemap);
+    });
+
     const fileInput = document.querySelector('#gpx-file-input') as HTMLInputElement;
     fileInput?.addEventListener('change', (e) => {
       const file = (e.target as HTMLInputElement).files?.[0];
@@ -141,6 +153,9 @@ class ReliveApp {
         source: 'terrainSource',
         exaggeration: 1.35
       });
+
+      // Reapply in case the user switched basemaps before the style finished loading.
+      applyBasemap(this.map, this.currentBasemap);
 
       // Add navigation controls (compass + pitch) in bottom-right
       this.map.addControl(new NavigationControl({ visualizePitch: true }), 'bottom-right');

@@ -1,6 +1,7 @@
 import confetti from 'canvas-confetti';
 import type { Milestone, ParsedTrack, TelemetryState } from '../types/track';
 import { VIDEO_PRESETS, type VideoResolutionPreset } from '../services/videoExportService';
+import { BASEMAPS } from '../services/mapStyle';
 
 export class AthleticHUD {
   private container: HTMLElement;
@@ -66,6 +67,12 @@ export class AthleticHUD {
             <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
             <span>Zepp Track</span>
           </button>
+          <label class="hud-btn hud-btn-outline basemap-picker" title="Switch basemap">
+            <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none"><path d="m12 2 9 5-9 5-9-5 9-5Z"/><path d="m3 12 9 5 9-5"/><path d="m3 17 9 5 9-5"/></svg>
+            <select id="basemap-select" aria-label="Basemap">
+              ${BASEMAPS.map((basemap) => `<option value="${basemap.id}">${basemap.label}</option>`).join('')}
+            </select>
+          </label>
           <label class="hud-btn hud-btn-primary file-upload-label" title="Upload custom GPX">
             <svg viewBox="0 0 24 24" width="14" height="14" stroke="currentColor" stroke-width="2" fill="none"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
             <span>Import GPX</span>
